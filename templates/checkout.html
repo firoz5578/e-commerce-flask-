@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <h2 class="mb-4"><i class="bi bi-credit-card"></i> Checkout</h2>
+
+  <div id="alert-placeholder"></div>
+
+  <p class="text-muted">This is a demo checkout page. You can fill in the form below just for fun!</p>
+
+  <form id="checkout-form">
+    <div class="mb-3">
+      <label for="name" class="form-label"><i class="bi bi-person-fill"></i> Full Name</label>
+      <input type="text" class="form-control" id="name" placeholder="John Doe" required> {# Added required for demo #}
+    </div>
+
+    <div class="mb-3">
+      <label for="address" class="form-label"><i class="bi bi-house-door-fill"></i> Shipping Address</label>
+      <input type="text" class="form-control" id="address" placeholder="123 Main St, City, Country" required> {# Added required for demo #}
+    </div>
+
+    <div class="mb-3">
+      <label for="payment" class="form-label"><i class="bi bi-wallet-fill"></i> Payment Method</label>
+      <select class="form-select" id="payment" required> {# Added required for demo #}
+        <option value="" selected disabled>Select Payment Method</option> {# Added value="" to default #}
+        <option value="credit">Credit Card</option>
+        <option value="debit">Debit Card</option>
+        <option value="upi">UPI</option>
+        <option value="cod">Cash on Delivery</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-success"><i class="bi bi-check2-circle"></i> Place Order</button>
+    <a href="{{ url_for('home') }}" class="btn btn-secondary ms-2"><i class="bi bi-arrow-left-circle"></i> Back to Shop</a>
+  </form>
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+{{ super() }}
+
+<script>
+  const checkoutForm = document.getElementById('checkout-form');
+  const alertPlaceholder = document.getElementById('alert-placeholder');
+
+  const appendAlert = (message, type) => {
+    alertPlaceholder.innerHTML = '';
+
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = [
+      `<div class="alert alert-${type} alert-dismissible fade show" role="alert">`,
+      `   <div><i class="bi bi-check-circle-fill me-2"></i>${message}</div>`, // Added icon
+      '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+      '</div>'
+    ].join('');
+
+    alertPlaceholder.appendChild(wrapper);
+  }
+
+  checkoutForm.addEventListener('submit', event => {
+    event.preventDefault();
+
+    appendAlert('Order placed successfully!', 'success');
+
+    checkoutForm.reset();
+
+    setTimeout(() => {
+      window.location.href = "{{ url_for('home') }}";
+    }, 3000);
+
+  });
+</script>
+{% endblock %}

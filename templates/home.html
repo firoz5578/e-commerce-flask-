@@ -1,0 +1,232 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="banners-section mb-5">
+    <img src="{{ url_for('static', filename='images/mobile_banner.jpeg') }}"
+         class="img-fluid rounded shadow-sm banner-image"
+         alt="Mobile App Information Header">
+
+    <img src="{{ url_for('static', filename='images/macbook_banner.jpeg') }}"
+         class="img-fluid rounded shadow-sm banner-image"
+         alt="The All-New MacBook Pro">
+
+    <img src="{{ url_for('static', filename='images/iphone_banner.jpeg') }}"
+         class="img-fluid rounded shadow-sm banner-image"
+         alt="iPhone 15 Pro Max">
+</div>
+
+<h2 class="mb-3">All Products</h2>
+<div class="carousel-container position-relative mb-5 d-flex align-items-center">
+    <button class="carousel-arrow left-arrow btn btn-light shadow-sm" onclick="scrollCarousel('carousel-all', -1)" aria-label="Scroll Left">
+        <i class="bi bi-chevron-left"></i>
+    </button>
+    <div class="carousel d-flex overflow-auto mx-3" id="carousel-all">
+        {% for product in products %}
+        <div class="card me-3 flex-shrink-0" style="width: 250px;">
+            <img src="{{ product.image }}" class="card-img-top" alt="{{ product.name }}" style="aspect-ratio: 4 / 3; object-fit: cover;">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title fs-6">
+                    <i class="bi bi-tag-fill text-primary me-1"></i>{{ product.name }}
+                </h5>
+                <p class="card-text small text-muted mb-2" style="flex-grow: 1; height: 4.5em; line-height: 1.5em; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                   {{ product.description }}
+                </p>
+                <p class="mb-2"><strong><i class="bi bi-currency-rupee"></i>{{ product.price }}</strong></p>
+                 <div class="mt-auto">
+                    <a href="{{ url_for('product', product_id=product.id) }}" class="btn btn-outline-primary btn-sm w-100 mb-1">
+                        <i class="bi bi-eye"></i> View
+                    </a>
+                    <a href="{{ url_for('add_to_cart', product_id=product.id) }}" class="btn btn-success btn-sm w-100">
+                        <i class="bi bi-cart-plus"></i> Add to Cart
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% else %}
+         <p class="ms-3">No products found.</p>
+        {% endfor %}
+    </div>
+    <button class="carousel-arrow right-arrow btn btn-light shadow-sm" onclick="scrollCarousel('carousel-all', 1)" aria-label="Scroll Right">
+        <i class="bi bi-chevron-right"></i>
+    </button>
+</div>
+
+{% for category, category_products in categories.items() %}
+<h2 class="mb-3">{{ category }}</h2>
+{% set carousel_id = 'carousel-' ~ loop.index %}
+<div class="carousel-container position-relative mb-5 d-flex align-items-center">
+     <button class="carousel-arrow left-arrow btn btn-light shadow-sm" onclick="scrollCarousel('{{ carousel_id }}', -1)" aria-label="Scroll Left">
+        <i class="bi bi-chevron-left"></i>
+    </button>
+    <div class="carousel d-flex overflow-auto mx-3" id="{{ carousel_id }}">
+        {% for product in category_products %}
+         <div class="card me-3 flex-shrink-0" style="width: 250px;">
+            <img src="{{ product.image }}" class="card-img-top" alt="{{ product.name }}" style="aspect-ratio: 4 / 3; object-fit: cover;">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title fs-6">
+                   <i class="bi bi-tag-fill text-primary me-1"></i>{{ product.name }}
+                </h5>
+                <p class="card-text small text-muted mb-2" style="flex-grow: 1; height: 4.5em; line-height: 1.5em; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                   {{ product.description }}
+                </p>
+                <p class="mb-2"><strong><i class="bi bi-currency-rupee"></i>{{ product.price }}</strong></p>
+                 <div class="mt-auto">
+                    <a href="{{ url_for('product', product_id=product.id) }}" class="btn btn-outline-primary btn-sm w-100 mb-1">
+                        <i class="bi bi-eye"></i> View
+                    </a>
+                    <a href="{{ url_for('add_to_cart', product_id=product.id) }}" class="btn btn-success btn-sm w-100">
+                        <i class="bi bi-cart-plus"></i> Add to Cart
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% else %}
+         <p class="ms-3">No products found in this category.</p>
+        {% endfor %}
+    </div>
+     <button class="carousel-arrow right-arrow btn btn-light shadow-sm" onclick="scrollCarousel('{{ carousel_id }}', 1)" aria-label="Scroll Right">
+        <i class="bi bi-chevron-right"></i>
+    </button>
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function scrollCarousel(id, direction) {
+                const container = document.getElementById(id);
+        if (container) {
+            const scrollAmount = 265;
+            container.scrollBy({
+                left: scrollAmount * direction,
+                behavior: 'smooth'
+            });
+        } else {
+            console.error(`Carousel container with id '${id}' not found.`);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.carousel').forEach(carousel => {
+            let intervalId = setInterval(() => {
+                let maxScroll = carousel.scrollWidth - carousel.clientWidth;
+                if (carousel.scrollLeft >= maxScroll - 5) {
+                     carousel.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                     carousel.scrollBy({ left: 265, behavior: 'smooth' });
+                }
+            }, 5000);
+
+            carousel.addEventListener('mouseenter', () => clearInterval(intervalId));
+            carousel.addEventListener('mouseleave', () => {
+                 intervalId = setInterval(() => {
+                    let maxScroll = carousel.scrollWidth - carousel.clientWidth;
+                    if (carousel.scrollLeft >= maxScroll - 5) {
+                         carousel.scrollTo({ left: 0, behavior: 'smooth' });
+                    } else {
+                         carousel.scrollBy({ left: 265, behavior: 'smooth' });
+                    }
+                 }, 5000);
+            });
+        });
+    });
+</script>
+
+<style>
+    .carousel-container {
+        position: relative;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .carousel {
+        display: flex;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 1rem;
+        margin-left: 0.75rem;
+        margin-right: 0.75rem;
+
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .carousel::-webkit-scrollbar {
+        display: none;
+    }
+
+    .card {
+        scroll-snap-align: start;
+        margin-right: 1rem;
+        flex-shrink: 0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        transition: transform 0.2s ease-in-out;
+    }
+    
+    .card:hover {
+        transform: translateY(-3px);
+    }
+
+    .card-body {
+       padding: 0.8rem;
+    }
+
+    .carousel-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        border-radius: 50%;
+        height: 38px;
+        width: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        cursor: pointer;
+        opacity: 0.8;
+        transition: opacity 0.2s ease;
+    }
+    
+    .carousel-arrow:hover {
+        opacity: 1;
+    }
+
+    .left-arrow {
+        left: -10px;
+    }
+
+    .right-arrow {
+        right: -10px;
+    }
+
+    .banners-section {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    @media (min-width: 768px) {
+        .banners-section {
+            flex-direction: row;
+            justify-content: center;
+            gap: 1rem;
+        }
+    }
+    
+    .banners-section img {
+        max-width: 100%;
+        height: 200px;
+        object-fit: cover;
+        object-position: center;
+        transition: transform 0.3s ease;
+    }
+    
+    .banners-section img:hover {
+        transform: scale(1.02);
+    }
+</style>
+{% endblock %}

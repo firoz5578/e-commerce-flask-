@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ product.name }}</h2>
+<div class="row">
+    <div class="col-md-6">
+        <img src="{{ product.image }}" alt="{{ product.name }}" class="img-fluid rounded shadow-sm mb-3">
+    </div>
+    <div class="col-md-6">
+        <p>{{ product.description }}</p>
+        <p><strong>Price: ₹{{ product.price }}</strong></p>
+
+        {% if product.specs %}
+        <h4><i class="bi bi-info-circle-fill"></i> Specifications</h4>
+        <table class="table table-striped">
+            <tbody>
+                {% for key, value in product.specs.items() %}
+                <tr>
+                    <th>{{ key }}</th>
+                    <td>{{ value }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+
+        <div class="d-flex gap-2 mt-3">
+            <a href="{{ url_for('add_to_cart', product_id=product.id) }}" class="btn btn-success">
+                <i class="bi bi-cart-plus"></i> Add to Cart
+            </a>
+            <a href="{{ url_for('checkout') }}" class="btn btn-primary">
+                <i class="bi bi-lightning-fill"></i> Buy Now
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

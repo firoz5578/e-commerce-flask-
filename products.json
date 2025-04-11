@@ -1,0 +1,281 @@
+[
+  {
+    "id": 1,
+    "name": "T-Shirt",
+    "price": 1245,
+    "category": "Clothing",
+    "description": "A cool, breathable cotton t-shirt perfect for everyday casual wear. Lightweight, soft fabric with a relaxed fit and durable stitching.",
+    "image": "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/465185/item/goods_71_465185_3x4.jpg?width=423",
+    "specs": {
+      "Material": "100% Cotton",
+      "Fit": "Relaxed",
+      "Color": "Navy Blue",
+      "Size Options": "S, M, L, XL"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Sneakers",
+    "price": 3735,
+    "category": "Footwear",
+    "description": "Comfortable running sneakers with cushioned soles, breathable mesh upper, and great grip. Ideal for daily jogs or urban wear.",
+    "image": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQb0qTbT-R7xXrtv2O73Q3_QoSgEs7udZCNAp6coYvmDsxWMOIWf-Wg9BHvMMym6GEcHwACTlXi2cyIREmlIxXFHjgyxf2sMxTiHUMaE0_WfIflDLLCzz_S",
+    "specs": {
+      "Material": "Mesh & Rubber",
+      "Sole Type": "Cushioned",
+      "Sizes": "7 to 11 (US)",
+      "Color": "Black/White"
+    }
+  },
+  {
+    "id": 3,
+    "name": "Watch",
+    "price": 4980,
+    "category": "Accessories",
+    "description": "A sleek and stylish wristwatch featuring a minimalist dial, stainless steel strap, and water-resistant design. Suitable for both casual and formal looks.",
+    "image": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRGwSMJM0wmonNjy2ZiKq8BzCTWs0m01bWneTjy-DotN6dzmJOizgEnN6ZIeNT0_SR-MvV8JT5G0FEzKEpDGKYYvbydl8EUU3ZfrL0fRsldKzZ3VefSL6kOAw",
+    "specs": {
+      "Strap Material": "Stainless Steel",
+      "Water Resistant": "Yes",
+      "Display Type": "Analog",
+      "Warranty": "2 Years"
+    }
+  },
+  {
+    "id": 4,
+    "name": "Backpack",
+    "price": 2490,
+    "category": "Accessories",
+    "description": "A durable travel backpack with multiple compartments, padded shoulder straps, and water-resistant fabric. Great for school, work, or hiking.",
+    "image": "https://oliveplanet.in/cdn/shop/files/olive_planet_tactical_maverick_backpack_front_view_1280x.jpg?v=1721908879",
+    "specs": {
+      "Capacity": "35L",
+      "Material": "Polyester",
+      "Water Resistant": "Yes",
+      "Compartments": "4"
+    }
+  },
+  {
+    "id": 5,
+    "name": "Laptop",
+    "price": 45650,
+    "category": "Electronics",
+    "description": "A lightweight 14-inch laptop featuring an Intel i5 processor, 8GB RAM, and 256GB SSD. Perfect for students, professionals, and on-the-go productivity.",
+    "image": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/inspiron-notebooks/14-2-in-1-7440-intel/media-gallery/notebook-inspiron-14-7440-t-ice-blue-fpr-gallery-1.psd?fmt=png-alpha&pscan=auto&scl=1&hei=402&wid=353&qlt=100,1&resMode=sharp2&size=353,402&chrss=full",
+    "specs": {
+      "Processor": "Intel i5",
+      "RAM": "8GB",
+      "Storage": "256GB SSD",
+      "Display": "14-inch FHD"
+    }
+  },
+  {
+    "id": 6,
+    "name": "Headphones",
+    "price": 2905,
+    "category": "Electronics",
+    "description": "Over-ear noise-cancelling headphones with crystal-clear sound, long battery life, and built-in microphone for calls and gaming.",
+    "image": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcRb2L6Z1OiJPevEWV_fNvEbWz4Gpw54cF5EkfopJ1PnvqoEA23jb3Y2Z4qcSwnl3tiGujMpbp-jO3hnAG7ts65XOn29pNPXYcFy0lSTo7XqFLujqF4DBe5FfQ",
+    "specs": {
+      "Type": "Over-ear",
+      "Battery Life": "20 hours",
+      "Noise Cancellation": "Yes",
+      "Microphone": "Built-in"
+    }
+  },
+  {
+    "id": 7,
+    "name": "Smartphone",
+    "price": 33200,
+    "category": "Electronics",
+    "description": "A powerful Android smartphone with a stunning AMOLED display, fast processor, and 50MP triple-lens camera system. 5G-ready.",
+    "image": "https://images.samsung.com/is/image/samsung/p6pim/in/sm-a556ezkhins/gallery/in-galaxy-a55-5g-sm-a556-sm-a556ezkhins-540254086?imbypass=true",
+    "specs": {
+      "Display": "6.5-inch AMOLED",
+      "Camera": "50MP + 12MP + 5MP",
+      "RAM": "8GB",
+      "Storage": "128GB"
+    }
+  },
+  {
+    "id": 8,
+    "name": "Keyboard",
+    "price": 2075,
+    "category": "Electronics",
+    "description": "Mechanical RGB keyboard with tactile keys, customizable lighting, and anti-ghosting features. Great for gaming and productivity.",
+    "image": "https://m.media-amazon.com/images/I/61kZERVCs7L.jpg",
+    "specs": {
+      "Type": "Mechanical",
+      "Lighting": "RGB Backlit",
+      "Connectivity": "Wired USB",
+      "Key Lifespan": "50 million presses"
+    }
+  },
+  {
+    "id": 9,
+    "name": "Desk Lamp",
+    "price": 1660,
+    "category": "Home & Living",
+    "description": "Modern LED desk lamp with adjustable brightness, flexible neck, and built-in USB charging port. Perfect for late-night work sessions.",
+    "image": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcS6Hjf6ANE8icTuuzePMwq28FDlHN09ClwL5jxyaV_ctixGHsjGNvvrzXWwFHSYfR4IJXdx1vIJ7eQfKlBm-N9721_XDCUPA2AaH2c4W0Kngz2B1M0W51vE",
+    "specs": {
+      "Brightness": "Adjustable",
+      "Features": "USB Charging, Flexible Neck",
+      "Power Source": "Electric",
+      "Light Type": "LED"
+    }
+  },
+  {
+    "id": 10,
+    "name": "Coffee Mug",
+    "price": 830,
+    "category": "Home & Living",
+    "description": "Classic ceramic coffee mug with a glossy finish and ergonomic handle. Microwave and dishwasher safe—perfect for daily brews.",
+    "image": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcS9GexTQ-SxU6VsI_FjwCeXnQ82QNtApV12j72KK3X1Sc9fDQnVu_yrbYcyARSSOiLLU4XJdZs_0muoFQcXR0A0lgvV5y0kSZaI-mwo8n4GH93oI7dScnE3mw",
+    "specs": {
+      "Material": "Ceramic",
+      "Capacity": "350ml",
+      "Microwave Safe": "Yes",
+      "Dishwasher Safe": "Yes"
+    }
+  },
+  {
+    "id": 11,
+    "name": "Hoodie",
+    "price": 1890,
+    "category": "Clothing",
+    "description": "Cozy fleece-lined hoodie with a front pouch pocket and adjustable drawstring hood. Great for chilly weather.",
+    "image": "https://image.hm.com/assets/hm/9f/4d/9f4d7e553e51d1da4e6822526e3fe2fb0546a032.jpg?imwidth=657",
+    "specs": {
+      "Material": "80% Cotton, 20% Polyester",
+      "Fit": "Regular",
+      "Color": "Heather Grey",
+      "Size Options": "S, M, L, XL, XXL"
+    }
+  },
+  {
+    "id": 12,
+    "name": "Jeans",
+    "price": 2245,
+    "category": "Clothing",
+    "description": "Classic slim-fit jeans made with stretch denim for comfort and flexibility. Ideal for casual wear.",
+    "image": "https://www.fc-moto.de/WebRoot/FCMotoDB/Shops/10207048/653A/5F89/0507/E533/1305/AC1E/1409/4495/7EJ-300_01_ml.jpg",
+    "specs": {
+      "Material": "Denim (Cotton + Elastane)",
+      "Fit": "Slim",
+      "Color": "Dark Blue",
+      "Waist Sizes": "28 to 36 inches"
+    }
+  },
+  {
+    "id": 13,
+    "name": "Flip Flops",
+    "price": 495,
+    "category": "Footwear",
+    "description": "Lightweight and water-friendly flip flops ideal for beachwear and casual strolls.",
+    "image": "https://remixd.co.uk/cdn/shop/files/FoamLife-FF2SS22002-Traa-SC-Slate-Grey-1_900x_ec0e0903-1179-4e58-9180-ed3d86ea1811.jpg?v=1686313854",
+    "specs": {
+      "Material": "Rubber",
+      "Sizes": "6 to 11 (US)",
+      "Color": "Navy"
+    }
+  },
+  {
+    "id": 14,
+    "name": "Boots",
+    "price": 3299,
+    "category": "Footwear",
+    "description": "Rugged ankle boots with anti-slip soles and weather-resistant build. Great for outdoor adventures.",
+    "image": "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/20283348/2023/1/11/a0312cd3-efc3-4132-9160-e6bf5392c29e1673420742168-El-Paso-Women-Black-Solid-Casual-Chelsea-Boots-1331673420742-11.jpg",
+    "specs": {
+      "Material": "Leather",
+      "Sole": "Rubber, Anti-slip",
+      "Sizes": "7 to 12 (US)",
+      "Color": "Brown"
+    }
+  },
+  {
+    "id": 15,
+    "name": "Sunglasses",
+    "price": 1100,
+    "category": "Accessories",
+    "description": "Stylish UV-protection sunglasses with a lightweight metal frame and scratch-resistant lenses.",
+    "image": "https://cdn.fcglcdn.com/brainbees/images/products/583x720/12696708a.webp",
+    "specs": {
+      "Frame": "Metal",
+      "Lens": "Polarized",
+      "UV Protection": "100%",
+      "Lens Color": "Black"
+    }
+  },
+  {
+    "id": 16,
+    "name": "Cap",
+    "price": 570,
+    "category": "Accessories",
+    "description": "Casual baseball cap with adjustable strap and breathable fabric. Great for everyday use.",
+    "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_750,h_750/global/025974/01/fnd/IND/fmt/png/PREMIUM-CLASSIC-Baseball-Cap",
+    "specs": {
+      "Material": "Cotton",
+      "Closure": "Adjustable strap",
+      "Color": "Olive Green",
+      "Size": "One size fits all"
+    }
+  },
+  {
+    "id": 17,
+    "name": "Tablet",
+    "price": 18990,
+    "category": "Electronics",
+    "description": "Compact 10-inch tablet with fast performance and long-lasting battery. Ideal for entertainment and productivity.",
+    "image": "https://m.media-amazon.com/images/I/61J1NUF2sKL._SX522_.jpg",
+    "specs": {
+      "Display": "10-inch IPS",
+      "Storage": "64GB",
+      "RAM": "4GB",
+      "Battery Life": "Up to 12 hours"
+    }
+  },
+  {
+    "id": 18,
+    "name": "Wireless Mouse",
+    "price": 860,
+    "category": "Electronics",
+    "description": "Ergonomic wireless mouse with adjustable DPI and silent click buttons. Perfect for both work and gaming.",
+    "image": "https://m.media-amazon.com/images/I/51yzr0iaXzL._SX522_.jpg",
+    "specs": {
+      "Type": "Wireless",
+      "Battery": "AA x 1",
+      "DPI": "800/1200/1600",
+      "Connectivity": "2.4GHz USB Receiver"
+    }
+  },
+  {
+    "id": 19,
+    "name": "Cushion",
+    "price": 640,
+    "category": "Home & Living",
+    "description": "Soft and fluffy cushion with removable washable cover. Adds comfort and color to any room.",
+    "image": "https://ik.imagekit.io/2xkwa8s1i/img/memory-foam-pillows/memory-foam-pillows-2.jpg?tr=w-256",
+    "specs": {
+      "Material": "Microfiber + Cotton Filling",
+      "Dimensions": "16 x 16 inches",
+      "Color": "Multicolor",
+      "Washable Cover": "Yes"
+    }
+  },
+  {
+    "id": 20,
+    "name": "Wall Clock",
+    "price": 985,
+    "category": "Home & Living",
+    "description": "Modern wall clock with a silent sweep mechanism and minimalistic design.",
+    "image": "https://ik.imagekit.io/2xkwa8s1i/img/decor/wall%20clock/Hoople/1.jpg?tr=w-3840",
+    "specs": {
+      "Diameter": "12 inches",
+      "Movement": "Quartz (Silent)",
+      "Material": "Plastic + Glass",
+      "Battery": "AA x 1"
+    }
+  }      
+]
