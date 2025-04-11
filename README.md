@@ -36,7 +36,7 @@ This is a basic e-commerce web application built using **Python Flask**. It disp
 
 1. **Clone the repository**  
     ```bash
-    git clone https://github.com/yourusername/ecommerce-flask.git
+    git clone https://github.com/jayadeeppatnaik/ecommerce-flask.git
     cd ecommerce-flask
     ```
 
