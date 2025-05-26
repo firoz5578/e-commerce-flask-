@@ -2,6 +2,7 @@ from flask import Flask, render_template, session, redirect, url_for, request
 from collections import defaultdict
 import json
 import datetime
+import os
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
@@ -44,25 +45,9 @@ def add_to_cart(product_id):
 def cart():
     cart_items = session.get('cart', [])
     total = sum(item['price'] for item in cart_items)
-    return render_template('cart.html', cart=cart_items, total=total)
-
-@app.route('/remove/<int:product_id>', methods=['POST'])
-def remove_from_cart(product_id):
-    cart = session.get('cart', [])
-    cart = [item for item in cart if item['id'] != product_id]
-    session['cart'] = cart
-    session.modified = True
-    return redirect(url_for('cart'))
-
-@app.route('/clear-cart', methods=['POST'])
-def clear_cart():
-    session['cart'] = []
-    session.modified = True
-    return redirect(url_for('cart'))
-
-@app.route('/checkout')
-def checkout():
-    return render_template('checkout.html')
+    return render_template('cart.html', cart_items=cart_items, total=total)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
+
