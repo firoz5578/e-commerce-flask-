@@ -28,26 +28,29 @@ def product(product_id):
         return "Product not found", 404
     return render_template('product.html', product=product)
 
-@app.route('/add_to_cart/<int:product_id>')
+@app.route('/add_to_cart/<int:product_id>', methods=['POST'])
 def add_to_cart(product_id):
-    product = next((item for item in products if item['id'] == product_id), None)
-    if not product:
-        return "Product not found", 404
-
     if 'cart' not in session:
         session['cart'] = []
 
-    session['cart'].append(product)
+    # Append product ID instead of product object
+    session['cart'].append(product_id)
     session.modified = True
-    return redirect(url_for('home'))
+    return redirect(url_for('cart'))
 
 @app.route('/cart')
 def cart():
-    cart_items = session.get('cart', [])
+    cart_ids = session.get('cart', [])
+    cart_items = [p for p in products if p['id'] in cart_ids]
     total = sum(item['price'] for item in cart_items)
     return render_template('cart.html', cart_items=cart_items, total=total)
+     
+@app.route('/checkout')
+def checkout():
+    return "<h2>Checkout Page</h2><p>This feature is coming soon!</p>"
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=port, debug=True)
+
 
