@@ -1,23 +1,25 @@
 from flask import Flask, render_template, session, redirect, url_for, request
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
 import datetime, os, json
 from collections import defaultdict
 from dotenv import load_dotenv
+
 load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
 # Confirm we're using PostgreSQL (not SQLite fallback)
-print ("Using database:", os.getenv("DATABASE_URL"))
+print("Using database:", os.getenv("DATABASE_URL"))
 
-# Configure SQLite or PostgreSQL
+# Configure database
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL", "sqlite:///products.db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-# Define Product model
+# ------------------ MODELS ------------------
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
@@ -25,25 +27,13 @@ class Product(db.Model):
     description = db.Column(db.Text)
     category = db.Column(db.String(50))
 
-# Create the database
-with app.app_context():
-    db.create_all()
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(150), unique=True, nullable=False)
+    password = db.Column(db.Text, nullable=False)  # no length issues
 
-    # Optional: Load from JSON once
-    if not Product.query.first():
-        with open('products.json') as f:
-            product_data = json.load(f)
-            for p in product_data:
-                db.session.add(Product(
-                    id=p['id'],
-                    name=p['name'],
-                    price=p['price'],
-                    description=p['description'],
-                    category=p['category']
-                ))
-            db.session.commit()
+# ------------------ ROUTES ------------------
 
-# Inject current time to templates
 @app.context_processor
 def inject_now():
     return {'now': datetime.datetime.utcnow()}
@@ -73,6 +63,9 @@ def add_to_cart(product_id):
 
 @app.route('/cart')
 def cart():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
     cart_ids = session.get('cart', [])
     cart_items = Product.query.filter(Product.id.in_(cart_ids)).all()
     total = sum(item.price for item in cart_items)
@@ -82,14 +75,7 @@ def cart():
 def checkout():
     return "<h2>Checkout page (to be implemented)</h2>"
 
-if __name__ == '__main__':
-    app.run(debug=True)
-
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(150), unique=True, nullable=False)
-    password = db.Column(db.String(150), nullable=False)
-from werkzeug.security import generate_password_hash, check_password_hash
+# ------------------ AUTH ------------------
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -101,7 +87,6 @@ def register():
         db.session.commit()
         return redirect(url_for('login'))
     return render_template('register.html')
-
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -116,22 +101,31 @@ def login():
             return "Invalid username or password"
     return render_template('login.html')
 
-
 @app.route('/logout')
 def logout():
     session.pop('user_id', None)
     return redirect(url_for('home'))
 
-@app.route('/cart')
-def cart():
-    if 'user_id' not in session:
-        return redirect(url_for('login'))
-    # Your existing cart logic...
-@app.route('/cart')
-def cart():
-    if 'user_id' not in session:
-        return redirect(url_for('login'))
-    # Your existing cart logic...
+# ------------------ CREATE TABLES ------------------
 
+with app.app_context():
+    db.create_all()
+    # Optional: Load products if empty
+    if not Product.query.first():
+        with open('products.json') as f:
+            product_data = json.load(f)
+            for p in product_data:
+                db.session.add(Product(
+                    id=p['id'],
+                    name=p['name'],
+                    price=p['price'],
+                    description=p['description'],
+                    category=p['category']
+                ))
+            db.session.commit()
 
+# ------------------ RUN APP ------------------
+
+if __name__ == '__main__':
+    app.run(debug=True)
 
